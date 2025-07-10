@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django</title>
+</head>
+<body>
+    {% if name and age and hobby %}
+    <h1>Hello my name is{{name}} and i am {{age}} years old and i love {{hobby}}</h1>
+    {% else %}
+    <h1>Hello, World!</h1>
+    {% endif %}
+</body>
+</html>
