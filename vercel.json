@@ -1,0 +1,14 @@
+{
+  "builds": [
+    {
+      "src": "postsapp/wsgi.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "postsapp/wsgi.py"
+    }
+  ]
+} 
