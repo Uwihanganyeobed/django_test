@@ -21,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-zx@cs15m-+er9fhdilc2o0d1&c!s$l3l=!$#wrv$g%rof)f^*@'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-zx@cs15m-+er9fhdilc2o0d1&c!s$l3l=!$#wrv$g%rof)f^*@')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['*', '.vercel.app', '.now.sh']
+ALLOWED_HOSTS = ['*', '.vercel.app', '.now.sh', '.onrender.com', '.render.com']
 
 
 # Application definition
@@ -74,12 +74,18 @@ WSGI_APPLICATION = 'postsapp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+import dj_database_url
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# Update database configuration from $DATABASE_URL.
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
 
 # Password validation
